@@ -67,7 +67,7 @@ export default {
     methods: {
         async getUserData() {
                 await axios.post(`http://localhost:5000/users/auth/google`)
-				.then( response => window.open(response.data.url, "_blank"))
+				.then( response => window.open(response.data.url))
 				.catch( error => console.log(error))
         },
         getParamsData() {
@@ -76,11 +76,11 @@ export default {
                 this.dataUser['expiry'] = urlParams.get('expiry');
                 this.dataUser['picture'] = urlParams.get('picture');
                 this.dataUser['user_name'] = urlParams.get('user_name');
-                console.log(this.dataUser['token'])
-                data_expiry = new Date(dataUser['expiry'])
-                console.log(data_expiry)
-
-        }
+                this.$store.dispatch('authModule/dataSave', this.dataUser)
+                .then(() => {
+                    this.$store.dispatch('authModule/userLogin', this.dataUser);
+                })
+        },
     }
 }
 </script>

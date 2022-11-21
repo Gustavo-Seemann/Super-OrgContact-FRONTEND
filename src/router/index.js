@@ -3,12 +3,12 @@ import Login from '../views/auth/Login.vue'
 import ContactsView from '../views/dashboard/contactsView.vue'
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: '/login',
+    name: 'login',
     component: Login
   },
   {
-    path: '/dashboard',
+    path: '/',
     name: 'dashboard',
     component: ContactsView
   }
