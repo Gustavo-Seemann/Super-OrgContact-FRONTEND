@@ -27,7 +27,7 @@
                 </li>
             </ul>
         </div> 
-            <contactsCard/>
+            <contactsCard :showPerDomain="false" :showOnlyEmails="false" :showContacts="true" />
         </div>
     </div>
 </template>
@@ -60,6 +60,7 @@ export default {
     created() {
 
         this.getUserInformation()
+        this.$store.dispatch('contactsModule/atualizaDados')
         
     },
     methods: {

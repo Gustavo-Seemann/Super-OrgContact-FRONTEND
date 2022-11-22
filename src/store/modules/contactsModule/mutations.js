@@ -34,7 +34,6 @@ function userContactsFormate(state, values) {
     if (emails.length > 0) {
         localStorage.setItem("emails", JSON.stringify(emails));
         }
-    console.log(emails)
     let emailsFiltered = []
     for (let domain of emailsDomain) {
         let result = {
@@ -52,7 +51,15 @@ function userContactsFormate(state, values) {
     if (emailsFiltered.length > 0) {
         localStorage.setItem("emailsFiltered", JSON.stringify(emailsFiltered));
         }
-    console.log(emailsFiltered)
 }
 
-export { userContactsFormate };
+// atualiza os valores da store.
+function atualizaDados(state) {
+    state.emails = (localStorage.getItem("emails")) ? JSON.parse(localStorage.getItem("emails")) : [];
+    state.emailsFiltered = (localStorage.getItem("emailsFiltered")) ? JSON.parse(localStorage.getItem("emailsFiltered")) : [];
+    state.contacts = (localStorage.getItem("contacts")) ? JSON.parse(localStorage.getItem("contacts")) : [];
+};
+
+
+
+export { userContactsFormate, atualizaDados };
