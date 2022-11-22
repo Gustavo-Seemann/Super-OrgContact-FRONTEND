@@ -10,24 +10,19 @@
                 </div>
             </div>
         </div>
-        <div>
-            <div class="menu-category">
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    A list item
-                    <span class="badge bg-danger rounded-pill">14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    A second list item
-                    <span class="badge bg-danger rounded-pill">2</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    A third list item
-                    <span class="badge bg-danger rounded-pill">1</span>
-                </li>
-            </ul>
-        </div> 
-            <contactsCard :showPerDomain="false" :showOnlyEmails="false" :showContacts="true" />
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class='contacts-menu'>
+                        <contactsMenu/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class='contacts-list'>
+                        <contactsCard :showPerDomain="false" :showOnlyEmails="false" :showContacts="true" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -36,11 +31,13 @@
 import axios from "axios";
 import { mapGetters } from 'vuex';
 import contactsCard from '../../components/contactsCard.vue';
+import contactsMenu from '../../components/contactsMenu.vue';
 
 export default {
     name: "contactsView",
     components: {
-        contactsCard
+        contactsCard,
+        contactsMenu
     },
 
     data() {
@@ -48,13 +45,13 @@ export default {
             userName: "",
             token: "",
             userPicture: "",
-            totalPeople: 0,
         }
     },
     computed: {
 
         ...mapGetters({
-            userContacts: 'contactsModule/contactsData'
+            userContacts: 'contactsModule/contactsData',
+            totalPeople: 'contactsModule/contactsLength'
         })
     },
     created() {
@@ -76,7 +73,6 @@ export default {
             axios.post('http://localhost:5000/contacts/get', { token: this.token })
             .then( (response) => {
                 let data = response.data
-                this.totalPeople = data['totalPeople']
                 this.$store.dispatch('contactsModule/userContactsFormate', data)
             })            
         },
@@ -86,6 +82,15 @@ export default {
 </script>
 
 <style scoped>
+
+.container {
+    margin: 0px;
+    width: 100%;
+}
+
+.contacts-list {
+    margin: 30px
+}
 
 .title {
     margin: 40px;

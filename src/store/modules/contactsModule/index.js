@@ -13,6 +13,9 @@ export default {
         contactsData (state) {
           return state.contacts
         },
+        contactsLength (state) {
+            return state.contacts.length
+          },
         emailsFilteredData (state) {
             return state.emailsFiltered
           },
