@@ -1,19 +1,9 @@
 <template>
-    <div>
+    <div class="body-page">
         <div>
             <navBar :nameDisplay=this.userName :userImg=this.userPicture />
         </div>
         <div class='main'>
-            <div class='title'>
-                <div class="row">
-                    <div class="col title-1">
-                        <h1>Boa tarde {{ userName }}!</h1>
-                    </div>
-                    <div class="col title-2">
-                        <h3>{{ totalPeople }} Contatos.</h3>
-                    </div>
-                </div>
-            </div>
             <div class="container">
                 <div class="col">
                     <div class='contacts-list'>
@@ -85,28 +75,29 @@ export default {
 
 <style scoped>
 
+.main {
+    padding-top: 60px;
+}
+
+
+.body-page {
+    background-color: #f2f5f6;
+}
+
+.container {
+    background-color: white;
+    padding: 0px;
+    border-radius: 10px;
+}
+
 .container {
     width: 100%;
     align-items: center;
 }
 
-.contacts-list {
-    margin-inline: 30px
-}
-
-.title {
-    margin: 40px;
-    margin-left: 100px;
-}
-.title-1{
-    text-align: start;
-}
-
-h1 {
-    font-size: 70px;
-    font-weight: 600;
-}
-.title-2{
-    text-align: end;
+@media (min-width: 1400px){
+.container {
+        max-width: 95%;
+    }
 }
 </style>

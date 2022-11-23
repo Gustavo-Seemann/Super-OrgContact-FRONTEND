@@ -9,6 +9,9 @@
                 Super <span class='shadowText'>OrgContact</span>
                 </a>
             </div>
+            <div class="middle">
+                <img class="googleLogo" src="../assets/contactsMenu/google.svg" alt="Logo da Google" width="100">
+            </div>
             <div class="dropdown">
                 <div class="right-side d-flex" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="userName">
@@ -16,7 +19,7 @@
                     </div>
                     <img class='userAvatar' :src="userImg" alt="Imagem do usuario" width="32" height="32">
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Sair</a></li>
+                        <li class="dropdown-item">Sair</li>
                     </ul>
                 </div>
             </div>
@@ -24,10 +27,16 @@
     </nav>
     <div class="sidebar" :style="{ width: sidebarWidth }">
         <div class="container">
+            <div class="user-side">
+                <img class="userAvatar" v-if="!collapsed" :src="userImg" alt="Imagem do usuario" width="100" height="100">
+            </div>
+            <div v-if="!collapsed" class="name-side">
+                <h3 class='userName'>{{ nameDisplay }}</h3>
+            </div>
             <div>
                 <h1 class="title-side">
                     <span v-if="!collapsed">
-                        Organizações
+                        Contatos
                     </span>
                 </h1>
             </div>
@@ -40,6 +49,7 @@
                         </li>
                     </div>
                 </ul>
+                <button class="btn btn-outline-danger logout-button" v-if="!collapsed">Sair</button>
             </div>
         </div>
     </div>
@@ -69,9 +79,17 @@ export default {
 
 <style scoped>
 
-.right-site {
-    align-items: center;
-    justify-content: center;
+.googleLogo {
+    color: black
+}
+
+.dropdown-item {
+    color: red
+}
+
+.dropdown:hover {
+    cursor: pointer;
+    color: red
 }
 
 .userAvatar{
@@ -101,13 +119,12 @@ export default {
 }
 
 .navbar {
-    /* border-bottom: 1px solid;
-    border-image: linear-gradient(to right, rgb(255, 0, 0),rgb(221, 221, 221), #01c4ff ) 100; */
-    background-color: #f1f1f1;
+    background-color: #f2f5f6;
 }
 
+
 a {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
 }
 
@@ -129,8 +146,18 @@ span {
     border-radius: 5px;
 }
 
-.title-side{
+.name-side {
+    border-bottom:  1px solid rgb(190, 190, 190);
+    margin-bottom: 10px;
+}
+
+.user-side {
     margin-top: 90px;
+
+}
+
+.title-side{
+    margin-top: 5px;
     display: inline-block;
     font-size: 20px;
 }
@@ -142,7 +169,9 @@ ul {
 
 .sidebar {
   color: rgb(0, 0, 0);
-  background-color: #f1f1f1;
+  background-color: #f2f5f6;
+  border-right: 1px solid;
+  border-image: linear-gradient(to bottom, rgb(255, 0, 0),rgb(221, 221, 221), #01c4ff ) 100;
   float: left;
   position: fixed;
   z-index: 1;

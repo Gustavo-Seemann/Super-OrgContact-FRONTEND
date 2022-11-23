@@ -6,12 +6,14 @@
                     <div class="domain-title">
                     <h3>{{itens['mainDomain']}}</h3>
                     </div>
-                    <li class="list-group-item d-flex">
-                        <div v-for="(itens, index) in itens['emails']" :key="index">
-                            <div class="fw-bold">{{ itens }}</div>
-                            <div class="text-muted">teste</div>
-                        </div>
-                    </li>
+                    <div v-for="(itens, index) in itens['emails']" :key="index">
+                        <li class="list-group-item d-flex">
+                            <div>
+                                <div class="fw-bold">{{ itens }}</div>
+                                <div class="text-muted">teste</div>
+                            </div>
+                        </li>
+                    </div>
                 </div>
             </ul>
         </div>
@@ -55,6 +57,19 @@ export default {
 </script>
 
 <style scoped>
+
+li {
+    border-inline: 0px;
+}
+
+h3 {
+    margin-left: 10px;
+}
+.domain-title {
+    background-color: #dceef4;
+    color:rgb(0, 0, 0);
+    padding: 3px;
+}
 
 .list-group-item {
     flex-direction:column;
