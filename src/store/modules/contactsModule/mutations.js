@@ -62,5 +62,16 @@ function atualizaDados(state) {
 };
 
 
+// pesquisa o email desejado. 
+function pesquisaEmail(state, NewValue) {
+    state.valorProcura = NewValue
+    state.valores = [];
+    state.valores = state.emails.filter((item) => {
+        return (item.toLowerCase().indexOf(state.valorProcura.toLowerCase()) > -1)});
+    return state.valores;
+}
 
-export { userContactsFormate, atualizaDados };
+
+
+
+export { userContactsFormate, atualizaDados, pesquisaEmail };

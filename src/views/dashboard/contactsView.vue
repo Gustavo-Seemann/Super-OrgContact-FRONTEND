@@ -1,14 +1,19 @@
 <template>
-    <div class="body-page">
-        <div>
-            <navBar :nameDisplay=this.userName :userImg=this.userPicture />
-        </div>
-        <div class='main'>
-            <div class="container">
-                <div class="col">
-                    <div class='contacts-list'>
-                        <contactsMenu/>
-                        <contactsCard :showPerDomain="true" :showOnlyEmails="false" :showContacts="false" />
+    <div class="secondary-body body-page">
+        <div class="container-fluid body-page">
+            <div>
+                <navBar :nameDisplay=this.userName :userImg=this.userPicture />
+            </div>
+            <div class="search-div">
+                <searchBar/>
+            </div>
+            <div class='main'>
+                <div class="container">
+                    <div class="col">
+                        <div class='contacts-list'>
+                            <contactsMenu v-on:emails="showAllEmails" v-on:contatos="showAllContacts" v-on:organizacoes="showAllDomains"/>
+                            <contactsCard :showPerDomain=this.domain :showOnlyEmails=this.emails :showContacts=this.contatos />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -21,6 +26,7 @@ import axios from "axios";
 import { mapGetters } from 'vuex';
 import contactsCard from '../../components/contactsCard.vue';
 import contactsMenu from '../../components/contactsMenu.vue';
+import searchBar from '../../components/searchBar.vue';
 import navBar from '../../components/navBar.vue';
 
 
@@ -30,6 +36,7 @@ export default {
         contactsCard,
         contactsMenu,
         navBar,
+        searchBar
     },
 
     data() {
@@ -37,6 +44,9 @@ export default {
             userName: "",
             token: "",
             userPicture: "",
+            contatos: true,
+            emails: false,
+            domain: false,
         }
     },
     computed: {
@@ -68,6 +78,21 @@ export default {
                 this.$store.dispatch('contactsModule/userContactsFormate', data)
             })            
         },
+        showAllEmails() {
+            this.domain = false
+            this.contatos = false
+            this.emails = true
+        },
+        showAllContacts() {
+            this.domain = false
+            this.contatos = true
+            this.emails = false
+        },
+        showAllDomains() {
+            this.domain = true
+            this.contatos = false
+            this.emails = false
+        },
     }
 }
 
@@ -75,10 +100,17 @@ export default {
 
 <style scoped>
 
-.main {
+.search-div {
     padding-top: 60px;
 }
 
+.main {
+    padding-top: 10px;
+}
+
+.secondary-body {
+    height: 100vh;
+}
 
 .body-page {
     background-color: #f2f5f6;

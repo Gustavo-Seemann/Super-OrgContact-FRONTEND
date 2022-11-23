@@ -10,28 +10,30 @@
                         <li class="list-group-item d-flex">
                             <div>
                                 <div class="fw-bold">{{ itens }}</div>
-                                <div class="text-muted">teste</div>
                             </div>
                         </li>
                     </div>
                 </div>
             </ul>
         </div>
-        <div class="contacts-list B">
+        <div v-show="showOnlyEmails == true" class="contacts-list B">
             <ul class="list-group list-group-light">
-                <div v-show="showOnlyEmails == true" v-for="(itens, index) in $store.state.contactsModule.emails" :key="index">
+                <div class="lists-title">
+                </div>
+                <div v-for="(itens, index) in $store.state.contactsModule.emails" :key="index">
                     <li class="list-group-item d-flex">
                         <div>
                             <div class="fw-bold">{{ itens }}</div>
-                            <div class="text-muted">teste</div>
                         </div>
                     </li>
                 </div>
             </ul>
         </div>
-        <div class="contacts-list C">
+        <div v-show="showContacts == true" class="contacts-list C">
             <ul class="list-group list-group-light">
-                <div v-show="showContacts == true" v-for="(itens, index) in $store.state.contactsModule.contacts" :key="index">
+                <div class="lists-title">
+                </div>
+                <div v-for="(itens, index) in $store.state.contactsModule.contacts" :key="index">
                     <li class="list-group-item d-flex">
                         <div>
                             <div class="fw-bold">{{ itens['email'] }}</div>
@@ -58,17 +60,25 @@ export default {
 
 <style scoped>
 
+.lists-title {
+    background-color: #ebf6fa;
+    padding: 27px
+}
+
 li {
     border-inline: 0px;
+    padding: 10px;
 }
 
 h3 {
     margin-left: 10px;
+    font-size: 25px;
 }
 .domain-title {
-    background-color: #dceef4;
+    background-color: #ebf6fa;
     color:rgb(0, 0, 0);
     padding: 3px;
+    padding-top: 10px;
 }
 
 .list-group-item {

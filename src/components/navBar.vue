@@ -171,7 +171,7 @@ ul {
   color: rgb(0, 0, 0);
   background-color: #f2f5f6;
   border-right: 1px solid;
-  border-image: linear-gradient(to bottom, rgb(255, 0, 0),rgb(221, 221, 221), #01c4ff ) 100;
+  border-image: linear-gradient(to bottom, rgb(255, 255, 255),rgb(186, 186, 186), #ffffff ) 100;
   float: left;
   position: fixed;
   z-index: 1;
