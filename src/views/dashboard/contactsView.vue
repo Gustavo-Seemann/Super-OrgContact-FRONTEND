@@ -1,25 +1,24 @@
 <template>
-    <div class='main'>
-        <div class='title'>
-            <div class="row">
-                <div class="col title-1">
-                    <h1>Boa tarde {{ userName }}!</h1>
-                </div>
-                <div class="col title-2">
-                    <h3>{{ totalPeople }} Contatos.</h3>
-                </div>
-            </div>
+    <div>
+        <div>
+            <navBar :nameDisplay=this.userName :userImg=this.userPicture />
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class='contacts-menu'>
-                        <contactsMenu/>
+        <div class='main'>
+            <div class='title'>
+                <div class="row">
+                    <div class="col title-1">
+                        <h1>Boa tarde {{ userName }}!</h1>
+                    </div>
+                    <div class="col title-2">
+                        <h3>{{ totalPeople }} Contatos.</h3>
                     </div>
                 </div>
+            </div>
+            <div class="container">
                 <div class="col">
                     <div class='contacts-list'>
-                        <contactsCard :showPerDomain="false" :showOnlyEmails="false" :showContacts="true" />
+                        <contactsMenu/>
+                        <contactsCard :showPerDomain="true" :showOnlyEmails="false" :showContacts="false" />
                     </div>
                 </div>
             </div>
@@ -32,12 +31,15 @@ import axios from "axios";
 import { mapGetters } from 'vuex';
 import contactsCard from '../../components/contactsCard.vue';
 import contactsMenu from '../../components/contactsMenu.vue';
+import navBar from '../../components/navBar.vue';
+
 
 export default {
     name: "contactsView",
     components: {
         contactsCard,
-        contactsMenu
+        contactsMenu,
+        navBar,
     },
 
     data() {
@@ -84,12 +86,12 @@ export default {
 <style scoped>
 
 .container {
-    margin: 0px;
     width: 100%;
+    align-items: center;
 }
 
 .contacts-list {
-    margin: 30px
+    margin-inline: 30px
 }
 
 .title {

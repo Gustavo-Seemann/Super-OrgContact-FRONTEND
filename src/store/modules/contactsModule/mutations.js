@@ -58,6 +58,7 @@ function atualizaDados(state) {
     state.emails = (localStorage.getItem("emails")) ? JSON.parse(localStorage.getItem("emails")) : [];
     state.emailsFiltered = (localStorage.getItem("emailsFiltered")) ? JSON.parse(localStorage.getItem("emailsFiltered")) : [];
     state.contacts = (localStorage.getItem("contacts")) ? JSON.parse(localStorage.getItem("contacts")) : [];
+    state.user = (localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : [];
 };
 
 

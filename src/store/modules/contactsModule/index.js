@@ -7,6 +7,7 @@ export default {
             contacts: "",
             emailsFiltered: "",
             emails: "",
+            user: "",
         }
     },
     getters: {
@@ -22,6 +23,9 @@ export default {
         emailsData (state) {
             return state.emails
           },
+        userData (state) {
+            return state.user
+        },
     },
     mutations: {
         userContactsFormate,
