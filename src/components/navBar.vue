@@ -36,7 +36,7 @@
             <div>
                 <h1 class="title-side">
                     <span v-if="!collapsed">
-                        Contatos
+                        Estatísticas
                     </span>
                 </h1>
             </div>
@@ -44,7 +44,7 @@
                 <ul class="list" v-for="(itens, index) in $store.state.contactsModule.emailsFiltered" :key="index">
                     <div class="sidebarOption">
                         <li v-if="!collapsed" class="list-group-item d-flex justify-content-between align-items-center">
-                            {{itens['mainDomain']}}
+                            @{{itens['mainDomain']}}
                             <span class="badge bg-danger rounded-pill">{{itens['emails'].length}}</span>
                         </li>
                     </div>
@@ -140,11 +140,6 @@ span {
     padding-bottom: 5px
 }
 
-.sidebarOption:hover {
-    cursor: pointer;
-    background-color: rgb(216, 216, 216);
-    border-radius: 5px;
-}
 
 .name-side {
     border-bottom:  1px solid rgb(190, 190, 190);

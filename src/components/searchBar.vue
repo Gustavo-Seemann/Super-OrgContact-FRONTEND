@@ -4,7 +4,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-9">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control input-text" placeholder="Procure um contato...">
+                        <input @keyup="$emit('searched')" type="text" class="form-control input-text" placeholder="Procure um email..." v-model="itensFiltered">
                         <div class="input-group-append">
                             <button class="btn btn-lg" type="button"><img src="../assets/contactsMenu/search-icon.svg" width="20"></button>
                         </div>
@@ -17,7 +17,19 @@
 
 <script>
 export default {
-    name: 'searchBar'
+    name: 'searchBar',
+
+    computed: {
+        itensFiltered: {
+            get() {
+                return this.$store.state.contactsModule.valorProcura
+            },
+            set(NewValue) {
+                this.$store.dispatch('contactsModule/pesquisaEmail', NewValue)
+            }
+        }
+    }
+
 }
 
 </script>

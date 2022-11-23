@@ -4,7 +4,7 @@
             <ul class="list-group list-group-light">
                 <div v-show="showPerDomain == true" v-for="(itens, index) in $store.state.contactsModule.emailsFiltered" :key="index">
                     <div class="domain-title">
-                    <h3>{{itens['mainDomain']}}</h3>
+                    <h3>@{{itens['mainDomain']}}</h3>
                     </div>
                     <div v-for="(itens, index) in itens['emails']" :key="index">
                         <li class="list-group-item d-flex">
@@ -43,6 +43,24 @@
                 </div>
             </ul>
         </div>
+        <div v-show="showContactsSearch == true" class="contacts-list D">
+            <ul class="list-group list-group-light">
+                <div class="lists-title">
+                </div>
+                <div v-for="(itens, index) in $store.state.contactsModule.valores" :key="index">
+                    <li class="list-group-item d-flex">
+                        <div>
+                            <div class="fw-bold">{{ itens }}</div>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+            <div v-if="$store.state.contactsModule.valores.length == 0">
+                <div class="sem-data justify-content-center">
+                    <p class="noResult"> Nenhum item encontrado! </p>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -53,16 +71,23 @@ export default {
     props: {
         showPerDomain: Boolean,
         showOnlyEmails: Boolean,
-        showContacts: Boolean
+        showContacts: Boolean,
+        showContactsSearch: Boolean,
     },
 }
 </script>
 
 <style scoped>
 
+.noResult {
+    font-weight: bold;
+    margin: 10px;
+    padding-bottom: 15px;
+}
+
 .lists-title {
     background-color: #ebf6fa;
-    padding: 27px
+    padding: 20px
 }
 
 li {

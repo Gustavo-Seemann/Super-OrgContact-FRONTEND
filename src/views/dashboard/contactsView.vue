@@ -5,14 +5,14 @@
                 <navBar :nameDisplay=this.userName :userImg=this.userPicture />
             </div>
             <div class="search-div">
-                <searchBar/>
+                <searchBar v-on:searched="ShowSearchEmails" />
             </div>
             <div class='main'>
                 <div class="container">
                     <div class="col">
                         <div class='contacts-list'>
                             <contactsMenu v-on:emails="showAllEmails" v-on:contatos="showAllContacts" v-on:organizacoes="showAllDomains"/>
-                            <contactsCard :showPerDomain=this.domain :showOnlyEmails=this.emails :showContacts=this.contatos />
+                            <contactsCard :showContactsSearch="this.search" :showPerDomain=this.domain :showOnlyEmails=this.emails :showContacts=this.contatos />
                         </div>
                     </div>
                 </div>
@@ -47,6 +47,7 @@ export default {
             contatos: true,
             emails: false,
             domain: false,
+            search: false,
         }
     },
     computed: {
@@ -82,17 +83,26 @@ export default {
             this.domain = false
             this.contatos = false
             this.emails = true
+            this.search = false
         },
         showAllContacts() {
             this.domain = false
             this.contatos = true
             this.emails = false
+            this.search = false
         },
         showAllDomains() {
             this.domain = true
             this.contatos = false
             this.emails = false
+            this.search = false
         },
+        ShowSearchEmails() {
+            this.domain = false
+            this.contatos = false
+            this.emails = false
+            this.search = true
+        }
     }
 }
 
