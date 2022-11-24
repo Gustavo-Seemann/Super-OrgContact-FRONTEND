@@ -19,7 +19,7 @@ function userContactsFormate(state, values) {
         state.contacts = JSON.parse(localStorage.getItem("contacts"))
     }
 
-    let emails = ['tesate@teste.com', 'tesate1@teste.com', 'tesate2@teste.com', 'tesate3@conecta.com', 'tesate1@conecta.com', 'tesate13@conecta.com', 'tesate4@conecta.com', 'tesat2e@gmail.com']
+    let emails = []
     let emailsDomain = []
     for (let contact of state.contacts) {
         if (contact['email']) {
@@ -71,7 +71,24 @@ function pesquisaEmail(state, NewValue) {
     return state.valores;
 }
 
+// pega dados do usuario.
+async function getUserInformation(state) {
+    store.dispatch('authModule/isAuthenticated')
+    let user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+        user = user[0];
+    }
+    let tokenUser = user['token'];
+    axios.post('http://localhost:5000/contacts/get', { token: tokenUser })
+    .then( (response) => {
+        let data = response.data
+        store.dispatch('contactsModule/userContactsFormate', data)
+    })            
+}
 
 
 
-export { userContactsFormate, atualizaDados, pesquisaEmail };
+export { userContactsFormate, atualizaDados, pesquisaEmail, getUserInformation };
+
+import axios from "axios";
+import store from '../../index';

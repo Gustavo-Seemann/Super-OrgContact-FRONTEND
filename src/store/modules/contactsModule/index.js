@@ -1,4 +1,4 @@
-import { userContactsFormate, atualizaDados, pesquisaEmail} from './mutations.js'
+import { userContactsFormate, atualizaDados, pesquisaEmail, getUserInformation} from './mutations.js'
 
 export default {
     namespaced: true,
@@ -9,7 +9,7 @@ export default {
             emails: "",
             user: "",
             valorProcura: "",
-            valores:"",
+            valores: [],
         }
     },
     getters: {
@@ -28,11 +28,15 @@ export default {
         userData (state) {
             return state.user
         },
+        valoresData (state) {
+            return state.valores
+        },
     },
     mutations: {
         userContactsFormate,
         atualizaDados,
         pesquisaEmail,
+        getUserInformation,
         },
 
     actions: {
@@ -44,6 +48,9 @@ export default {
         },
         pesquisaEmail({commit}, NewValue){
             commit('pesquisaEmail', NewValue)
+        },
+        getUserInformation({commit}){
+            commit('getUserInformation')
         }
     },
 }

@@ -19,7 +19,7 @@
                     </div>
                     <img class='userAvatar' :src="userImg" alt="Imagem do usuario" width="32" height="32">
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li class="dropdown-item">Sair</li>
+                        <li @click="this.$store.dispatch('authModule/logOut')" class="dropdown-item">Sair</li>
                     </ul>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                         </li>
                     </div>
                 </ul>
-                <button class="btn btn-outline-danger logout-button" v-if="!collapsed">Sair</button>
+                <button @click="this.$store.dispatch('authModule/logOut')" class="btn btn-outline-danger logout-button" v-if="!collapsed">Sair</button>
             </div>
         </div>
     </div>

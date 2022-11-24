@@ -2,7 +2,7 @@
     <div>
         <div class="contacts-list A">
             <ul class="list-group list-group-light">
-                <div v-show="showPerDomain == true" v-for="(itens, index) in $store.state.contactsModule.emailsFiltered" :key="index">
+                <div v-show="showPerDomain == true" v-for="(itens, index) in emailsFiltered" :key="index">
                     <div class="domain-title">
                     <h3>@{{itens['mainDomain']}}</h3>
                     </div>
@@ -20,7 +20,7 @@
             <ul class="list-group list-group-light">
                 <div class="lists-title">
                 </div>
-                <div v-for="(itens, index) in $store.state.contactsModule.emails" :key="index">
+                <div v-for="(itens, index) in emailsData" :key="index">
                     <li class="list-group-item d-flex">
                         <div>
                             <div class="fw-bold">{{ itens }}</div>
@@ -33,7 +33,7 @@
             <ul class="list-group list-group-light">
                 <div class="lists-title">
                 </div>
-                <div v-for="(itens, index) in $store.state.contactsModule.contacts" :key="index">
+                <div v-for="(itens, index) in userContacts" :key="index">
                     <li class="list-group-item d-flex">
                         <div>
                             <div class="fw-bold">{{ itens['email'] }}</div>
@@ -47,7 +47,7 @@
             <ul class="list-group list-group-light">
                 <div class="lists-title">
                 </div>
-                <div v-for="(itens, index) in $store.state.contactsModule.valores" :key="index">
+                <div v-for="(itens, index) in valoresData" :key="index">
                     <li class="list-group-item d-flex">
                         <div>
                             <div class="fw-bold">{{ itens }}</div>
@@ -55,8 +55,8 @@
                     </li>
                 </div>
             </ul>
-            <div v-if="$store.state.contactsModule.valores.length == 0">
-                <div class="sem-data justify-content-center">
+            <div>
+                <div v-if="JSON.stringify(valoresData) === '[]'" class="sem-data justify-content-center">
                     <p class="noResult"> Nenhum item encontrado! </p>
                 </div>
             </div>
@@ -66,6 +66,9 @@
 
 
 <script>
+import { mapGetters } from 'vuex';
+
+
 export default {
     name: 'contactsCard',
     props: {
@@ -73,6 +76,20 @@ export default {
         showOnlyEmails: Boolean,
         showContacts: Boolean,
         showContactsSearch: Boolean,
+    },
+    mounted() {
+
+    this.$store.dispatch('contactsModule/atualizaDados')
+
+    },
+    computed: {
+
+        ...mapGetters({
+            userContacts: 'contactsModule/contactsData',
+            emailsFiltered: 'contactsModule/emailsFilteredData',
+            valoresData: 'contactsModule/valoresData',
+            emailsData: 'contactsModule/emailsData',
+        })
     },
 }
 </script>

@@ -2,17 +2,17 @@
     <div class="secondary-body body-page">
         <div class="container-fluid body-page">
             <div>
-                <navBar :nameDisplay=this.userName :userImg=this.userPicture />
+                <navBar :nameDisplay=this.userName @click="UpdateComponents" :userImg=this.userPicture />
             </div>
             <div class="search-div">
-                <searchBar v-on:searched="ShowSearchEmails" />
+                <searchBar v-on:searched="ShowSearchEmails"/>
             </div>
             <div class='main'>
                 <div class="container">
                     <div class="col">
                         <div class='contacts-list'>
-                            <contactsMenu v-on:emails="showAllEmails" v-on:contatos="showAllContacts" v-on:organizacoes="showAllDomains"/>
-                            <contactsCard :showContactsSearch="this.search" :showPerDomain=this.domain :showOnlyEmails=this.emails :showContacts=this.contatos />
+                            <contactsMenu @click="UpdateComponents" v-on:emails="showAllEmails" v-on:contatos="showAllContacts" v-on:organizacoes="showAllDomains" />
+                            <contactsCard :showContactsSearch="this.search" :showPerDomain=this.domain :showOnlyEmails="this.emails" :showContacts="this.contatos" :key="`${componentKey}-2`" />
                         </div>
                     </div>
                 </div>
@@ -22,12 +22,12 @@
 </template>
 
 <script>
-import axios from "axios";
 import { mapGetters } from 'vuex';
 import contactsCard from '../../components/contactsCard.vue';
 import contactsMenu from '../../components/contactsMenu.vue';
 import searchBar from '../../components/searchBar.vue';
 import navBar from '../../components/navBar.vue';
+import store from '../../store/index';
 
 
 export default {
@@ -48,6 +48,7 @@ export default {
             emails: false,
             domain: false,
             search: false,
+            componentKey: 0,
         }
     },
     computed: {
@@ -57,14 +58,18 @@ export default {
             totalPeople: 'contactsModule/contactsLength'
         })
     },
+    beforeCreate() {
+        store.dispatch('contactsModule/getUserInformation')
+    },
     created() {
 
-        this.getUserInformation()
-        this.$store.dispatch('contactsModule/atualizaDados')
+        this.getUserInfo()
+        store.dispatch('contactsModule/atualizaDados')
         
     },
+
     methods: {
-        async getUserInformation() {
+        async getUserInfo() {
             this.$store.dispatch('authModule/isAuthenticated')
             let user = JSON.parse(localStorage.getItem("user"));
             if (user) {
@@ -73,11 +78,6 @@ export default {
             this.userName = user['user_name'];
             this.userPicture = user['picture'];
             this.token = user['token'];
-            axios.post('http://localhost:5000/contacts/get', { token: this.token })
-            .then( (response) => {
-                let data = response.data
-                this.$store.dispatch('contactsModule/userContactsFormate', data)
-            })            
         },
         showAllEmails() {
             this.domain = false
@@ -102,6 +102,9 @@ export default {
             this.contatos = false
             this.emails = false
             this.search = true
+        },
+        UpdateComponents() {
+            this.componentKey++;
         }
     }
 }
