@@ -18,21 +18,18 @@
     <div class="body">
         <div class="container context">
             <div class="title">
-            <h1>Bem vindo ao Super OrgContact!</h1>
-            <h2 class="titleDescription line-1 anim-typewriter">A lista de contatos da sua conta Google.</h2>
+                <img src="../../assets/contactsMenu/logoSite.svg" width="100">
+                <h1>Bem vindo ao <span class="appTitle">Super OrgContact</span>!</h1>
+                <h2 class="titleDescription line-1 anim-typewriter">A lista de contatos da sua conta Google.</h2>
             </div>
             <div class="row">
-                <div class="col-lg-6 imgLogin">
-                    <button type="button" class="btn btn-danger loginBtn" @click="getUserData" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16"><path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/></svg>Entrar com Google!</button>
-                </div>
                 <transition name="fade">
-                <div v-if="showColOne" class="col-lg-6 colOne">
-                    <div>
-                        <img src="../../assets/loginImages/emailImage.png">
-                        <h2 class="titleDescription">Veja todos seus contatos e email relacioandos a sua conta Google!</h2>
+                <div v-if="showColOne" class="colOne">
+                    <div class="imgLogin">
+                        <button type="button" class="btn btn-danger loginBtn" @click="getUserData" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16"><path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/></svg>Entrar com Google!</button>
                     </div>
-                    <div class="bottomDiv" >
-                        <p> Entre com sua conta Google para ver seus contatos e emails relacionados. </p>
+                    <div class="googleImg">
+                        <img src="../../assets/contactsMenu/google.svg" alt="Logo da Google" width="100">
                     </div>
                 </div>
                 </transition>
@@ -88,6 +85,21 @@ export default {
   
 <style scoped>
 
+.googleImg {
+    margin: 20px;
+    margin-top: 200px;
+}
+
+.title {
+    margin-top: 15%;
+}
+
+.appTitle {
+    text-shadow: 
+    -2px 2px 0px rgb(159, 3, 3),
+    2px 2px 0px #01c4ff;
+}
+
 *{
     margin: 0px;
     padding: 0px;
@@ -103,14 +115,11 @@ export default {
     transition: all 2s ease;
 }
 
-.bottomDiv {
-    margin: 50px;
-}
-
 .imgLogin {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0px;
 }
 
 .title {
@@ -130,23 +139,25 @@ export default {
 }
 
 .colOne {
-    background-color: #f4f4f4;
-    box-shadow: 29px 32px 20px -18px rgba(203, 203, 203, 0.51);
-    -webkit-box-shadow: 29px 32px 20px -18px rgba(203, 203, 203,0.51);
-    -moz-box-shadow: 29px 32px 20px -18px rgba(203, 203, 203,0.51);
-    border-radius: 20px;
     margin: 10px;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+    width: 55%;
+
 }
 
 .row {
     flex-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
     font-family: 'Open Sans';
     font-size: 60px;
     font-weight: 700;
-    margin-top: 10%;
     margin-bottom: 30px;
 }
 
@@ -211,7 +222,7 @@ h2 {
     list-style: none;
     width: 20px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(74, 74, 74, 0.638);
     animation: animate 25s linear infinite;
     bottom: -150px;
     
@@ -222,7 +233,7 @@ h2 {
     width: 80px;
     height: 80px;
     animation-delay: 0s;
-    background: #499255
+    background: #d1d1d1
 }
 
 .circles li:nth-child(12){
@@ -231,7 +242,7 @@ h2 {
     height: 60px;
     animation-delay: 4s;
     animation-duration: 18s;
-    background: #1875e5;
+    background: #d1d1d1
 }
 
 .circles li:nth-child(2){
@@ -240,7 +251,7 @@ h2 {
     height: 20px;
     animation-delay: 2s;
     animation-duration: 12s;
-    background: #499255
+    background: #d1d1d1
 }
 
 .circles li:nth-child(3){
@@ -248,7 +259,7 @@ h2 {
     width: 20px;
     height: 20px;
     animation-delay: 4s;
-    background: #f2b736
+    background: #d1d1d1
 
 }
 
@@ -258,7 +269,7 @@ h2 {
     height: 60px;
     animation-delay: 0s;
     animation-duration: 18s;
-    background: #1875e5;
+    background: #d1d1d1
 }
 
 .circles li:nth-child(5){
@@ -266,7 +277,7 @@ h2 {
     width: 20px;
     height: 20px;
     animation-delay: 0s;
-    background: #c5523f
+    background: #d1d1d1
 }
 
 .circles li:nth-child(6){
@@ -274,17 +285,9 @@ h2 {
     width: 110px;
     height: 110px;
     animation-delay: 3s;
-    background: #f2b736
+    background: #d1d1d1
 }
 
-.circles li:nth-child(7){
-    left: 35%;
-    width: 150px;
-    height: 150px;
-    animation-delay: 7s;
-    background: #499255
-
-}
 
 .circles li:nth-child(8){
     left: 50%;
@@ -292,7 +295,7 @@ h2 {
     height: 25px;
     animation-delay: 15s;
     animation-duration: 45s;
-    background: #f2b736
+    background: #d1d1d1
 
 }
 
@@ -302,7 +305,7 @@ h2 {
     height: 15px;
     animation-delay: 2s;
     animation-duration: 35s;
-    background: #c5523f
+    background: #d1d1d1
 
 }
 
@@ -312,7 +315,7 @@ h2 {
     height: 150px;
     animation-delay: 0s;
     animation-duration: 11s;
-    background: #1875e5;
+    background: #d1d1d1
 
 }
 .circles li:nth-child(11){
@@ -321,7 +324,7 @@ h2 {
     height: 150px;
     animation-delay: 1s;
     animation-duration: 11.5s;
-    background: #c5523f;
+    background: #d1d1d1
 }
 
 /* Animation Writting CSS Kreyframes*/
