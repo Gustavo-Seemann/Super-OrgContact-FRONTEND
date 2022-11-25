@@ -79,7 +79,7 @@ async function getUserInformation(state) {
         user = user[0];
     }
     let tokenUser = user['token'];
-    axios.post('https://super-orgcontact-369616.uc.r.appspot.com/contacts/get', { token: tokenUser })
+    axios.post('https://super-orgcontact-369704.uc.r.appspot.com/contacts/get', { token: tokenUser })
     .then( (response) => {
         let data = response.data
         store.dispatch('contactsModule/userContactsFormate', data)
