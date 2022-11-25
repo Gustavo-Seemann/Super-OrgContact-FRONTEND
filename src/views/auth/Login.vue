@@ -63,7 +63,7 @@ export default {
     },
     methods: {
         async getUserData() {
-                await axios.post(`http://localhost:5000/users/auth/google`)
+                await axios.post(`https://super-orgcontact-369616.uc.r.appspot.com/users/auth/google`)
 				.then( response => window.open(response.data.url))
 				.catch( error => console.log(error))
         },
